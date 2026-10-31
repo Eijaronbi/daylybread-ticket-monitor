@@ -1,0 +1,18 @@
+name: DaylyBread ticket monitor
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull tix.africa order status and push snapshot to ERP.AI
+        run: bash scripts/db-ticket-monitor.sh
