@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   monitor:
@@ -14,5 +14,5 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Pull tix.africa order status and push snapshot to ERP.AI
+      - name: Pull tix.africa order status, publish latest.json, push ERP.AI snapshot
         run: bash scripts/db-ticket-monitor.sh
